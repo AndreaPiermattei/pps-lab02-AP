@@ -12,7 +12,8 @@ def helloScalaFunction(name: String) : String = "Hello, Scala! " + name
   println(HelloScalaObject.isPositiveVersionVal(5))
   println(HelloScalaObject.isPositiveVersionVal(-4))
 
-  val notEmpty = HelloScalaObject.neg(empty) // which type of notEmpty?
-  notEmpty("foo") // true
-  notEmpty("") // false
-  notEmpty("foo") && !notEmpty("") // true.. a comprehensive test
+  println(HelloScalaObject.compose(_ - 1, _ * 2)(5))
+
+  println(HelloScalaObject.recurrentExponential(2,4))
+  println(HelloScalaObject.recurrentExponentialTail(2,4))
+  println(HelloScalaObject.reverse(2341))
