@@ -55,6 +55,3 @@ class OptionalIntTest:
   @Test
   def testFilterWithEmpty(): Unit =
     assertEquals(OptionalInt.Empty(),OptionalInt.filter(OptionalInt.Empty(),graterThanCondition(5,2)))
-
-
-/** Task 5: do test for map **/
