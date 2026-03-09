@@ -25,36 +25,36 @@ class OptionalIntTest:
     val empty = OptionalInt.Empty()
     assertEquals(1, OptionalInt.orElse(empty, 1))
 
-  def basicTransformFunction(value: Int): Int =
+  def sumTransform(value: Int): Int =
     value + 4
-
 
   @Test
   def testMapIntWithNotEmpty(): Unit =
     val input: Int = 5
-    assertEquals(OptionalInt.Just(input+4),OptionalInt.mapInt(OptionalInt.Just(input),basicTransformFunction))
-
+    assertEquals(OptionalInt.Just(sumTransform(input)),OptionalInt.mapInt(OptionalInt.Just(input),sumTransform))
 
   @Test
   def testMapIntWithEmpty(): Unit =
-    assertEquals(OptionalInt.Empty(),OptionalInt.mapInt(OptionalInt.Empty(),basicTransformFunction))
+    assertEquals(OptionalInt.Empty(),OptionalInt.mapInt(OptionalInt.Empty(),sumTransform))
 
-  def basicConditionFilter(value: Int, myConditionValue: Int): (Int)=>Boolean =
+  def graterThanCondition(value: Int, myConditionValue: Int): (Int)=>Boolean =
     (value) => value > myConditionValue
 
   @Test
   def testFilterWithNotEmptyCorrect(): Unit = {
-    assertEquals(OptionalInt.Just(5),OptionalInt.filter(OptionalInt.Just(5),basicConditionFilter(5,2)))
+    val value: Int = 5
+    assertEquals(OptionalInt.Just(5),OptionalInt.filter(OptionalInt.Just(value),graterThanCondition(value,2)))
   }
 
   @Test
   def testFilterWithNotEmptyInCorrect(): Unit = {
-    assertEquals(OptionalInt.Empty(), OptionalInt.filter(OptionalInt.Just(5), basicConditionFilter(5,10)))
+    val value: Int = 5
+    assertEquals(OptionalInt.Empty(), OptionalInt.filter(OptionalInt.Just(value), graterThanCondition(value,10)))
   }
 
   @Test
   def testFilterWithEmpty(): Unit =
-    assertEquals(OptionalInt.Empty(),OptionalInt.filter(OptionalInt.Empty(),basicConditionFilter(5,2)))
+    assertEquals(OptionalInt.Empty(),OptionalInt.filter(OptionalInt.Empty(),graterThanCondition(5,2)))
 
 
 /** Task 5: do test for map **/
