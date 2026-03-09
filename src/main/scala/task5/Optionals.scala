@@ -23,7 +23,13 @@ object Optionals:
       case Just(a) => Just(transformFunction(a))
       case _       => Empty()
 
-    def filter(opt: OptionalInt, cond: OptionalInt => Boolean): OptionalInt = ???
+    def filter(opt: OptionalInt, cond: Int => Boolean): OptionalInt = opt match {
+      case Just(a) => cond match
+        case cond if cond(a) => opt
+        case _ => Empty()
+      case _ => Empty()
+    }
+      
 
 @main def tryOptionals(): Unit =
   import Optionals.* // to work with Optionals (to see OptionalInt type)
